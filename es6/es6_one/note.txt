@@ -1,0 +1,243 @@
+var
+1.let
+    只在块级作用域内有效
+    暂时性死区
+        {
+            let a = 10
+        }
+    变量的声明不能提升
+        var a = 10  ==> var a
+                        a=10
+        let a = 10   
+        var test = function(){
+            
+        }
+        function test(){
+            整体提升
+        }
+
+    变量不可以重复声明
+        let a = 10
+            a = 20
+
+2.const
+    只在代码块内有效
+    存在暂时性死区
+    声明不能提升
+    不可以重复声明
+    声明的是常量,不可改变常量的值
+    声明的同时必须初始化
+        const a
+            a = 10
+
+        const a = 10
+            a = 20
+
+2.解构
+    可以把对象或者是数组中的值,拿出来赋值给变量
+    let [a,b,c] = [1,2,3]
+        a=1
+        b=2
+        c=3
+    等式两边如果模式相同的话,那么左右是一一匹配的关系
+    
+    等式两边如果模式不相同的话,右数据多于左
+    解构失败
+        let [a,b,c,d] = [1,2,3]
+            d=undefined
+    等式两边如果模式不相同的话,左数据多于右
+    let [a,b,c]  = [1,2,3,4,5] 
+        c = 3
+
+    let [a,b,...c] = [1,2,3,4,5] 
+        c = [3,4,5]
+
+    默认值
+        改变该变量的值,那么生效的是改变之后的值
+        没改变变量的值/undefined,那么生效的就是默认值
+
+        let [a=10,b,c=12]=[1,2]
+            a=1
+            b=2
+            c=12
+
+    数组的解构
+         let [a,b,c]  = [1,2,3,4,5] 
+        c = 3
+
+        let [a,b,...c] = [1,2,3,4,5] 
+            c = [3,4,5]
+
+        let [a,b,{name}] = [1,'hello',{name:tom}]
+                a = 1
+                b = hello
+                name = tom
+        let [a,b,[c,d]] = [1,2,[3]]
+            a = 1
+            b = 2
+            c = 3
+            d = undefined
+
+    对象的解构
+        let obj = {
+            name:'tom',
+            age:12
+        }
+
+        let {name:username,age:userage} = obj
+                username
+                userage
+        let {name:name,age:age}
+    简写
+        let {name,age} = obj
+
+    字符串的解构
+        是可迭代的
+        把字符串转换成类数组的形式
+
+        let [a,b,c,d] = '1234'
+        a = 1
+        b =2
+        c = 3
+        d = 4
+
+    数值和布尔值
+        不可迭代
+        let [a,b,c]= true
+
+        let [a,b,c]= 123
+
+        解构原型上的方法
+        let {toString} = true
+            toString == Boolean.prototype.toString
+
+        let {trim} = '123'
+
+    原型链  继承!!!!!
+
+    类  
+
+    函数的解构
+       function test([a,b]){
+
+       }
+       test([1,2])
+
+对象的扩展
+
+    属性名:  变量名
+    属性值:  变量值
+
+    let name = 'tom'
+    let age = 12
+
+    let obj = {
+        name:name,
+        age:age
+    }
+
+    obj = {
+        name,
+        age
+    }
+.is(value1,2value2)
+    比较两个值是否相等，true   false
+            .is()         ===
+    +0 -0   false       true
+    NaN     true        false
+.assgin(target,obj1,obj2)
+    合并对象到target中
+Object.keys(obj)
+    返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键名
+Object.values(obj)
+    返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键值
+Object.entries(obj)
+    返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键值对数组
+函数参数的默认值
+    ES6允许为函数的参数设置默认值，即直接写在函数定义的后面
+    function log(x,y='world'){
+        console.log(x,y)
+    }
+    通常情况下，定义了默认值的参数，应该是函数的尾参数
+    函数的length属性，将返回没有指定默认值的参数个数
+ES6中引入了rest参数(形式为  ...变量名)，用于获取函数的多余参数，这样就不需要使用arguments对象了，rest参数搭配的变量是一个数组，将变量多余的参数放入数组中
+
+
+
+1.箭头函数
+    let test = (a,b)=>{
+
+    }
+    let test = a=>console.log(a)
+    如果只有一个参数,那么()可以省略
+    如果函数体内只有一句,那么{}可以省略
+
+    箭头函数内没有this,this指向上一层
+
+    箭头函数没有arguments
+
+    箭头函数不能作为构造函数
+
+2.let arr = [1,2,3]
+console.log(...arr)
+
+    把字符串转换成类数组的形
+    console.log([...'hello'])
+
+3.Array.from()
+    可以把类数组对象和可迭代的数据,转换成数组
+
+4.Array.of()
+    可以把一组值转换成数组
+
+5. .find
+    遍历数组,拿到第一个符合条件的值,并返回该值
+    .find((item,index,arr)=>{
+        item:当前的值
+        index:当前的位置
+        arr:数组
+    })
+    如果没有没有找到符合条件的值
+    那么返回undefined
+
+   .findIndex
+   遍历数组,拿到第一个符合条件的值,并返回该值的索引
+    如果没有符合条件
+    返回-1
+
+    .fill()
+        使用固定的值,去填充数组
+        
+    .includes
+        判断数组中有没有该值
+        返回值是布尔值
+
+set
+    类似于数组,每个值都是唯一的,无重复
+    .add()   添加
+    .delete  删除
+    .clear   清空
+    .has     set成员中是否包含该值
+    .forEach
+    .size    set有多少个成员
+console.log([...new Set(arr)])
+
+Map
+    类似于对象
+    存储的是键值对,键 可以有多种形式
+    map    值-值
+    对象  键-值
+
+    方法
+        .set 设置map成员
+        .delete 
+        .clear
+        .has
+        .size
+
+
+
+
+
+
+

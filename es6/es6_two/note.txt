@@ -1,0 +1,138 @@
+1.箭头函数
+    **内部没有this,this指向上一层
+    不能用于构造函数
+    (x,y)=>{
+
+    }
+    参数只有一个,小括号可以省略
+    函数体只有一句,大括号也可以省略
+    item=>console.log(item)
+    箭头函数的声明
+    let test = ()=>{
+        
+    }
+
+数组的扩展
+    Array.from 
+        把类数组对象,或者是可迭代的对象转换成数组
+    Array.of
+        把一组值转换成数组
+        Array.of(1,2,3,4)
+        Array.of('hello','nice')
+
+    let str = 'hello'
+    let arr = [...str]
+        ==>h e l l o
+    
+    .fill
+        填充数组,数组一定要有长度
+        arr = [1,2,3,4]
+        arr.fill(10)
+        arr = [10,10,10,10]
+
+        arr2 = []
+        arr2.length =3
+        arr2.fill(1)
+        arr2 = [1,1,1]
+
+    .find
+        去找是由有符合条件的值,并返回该值
+        如果没有找到 undefind
+        arr.find(10)
+
+    .findIndex
+        去找是由有符合条件的值,并返回该值的索引
+        如果没有没有找到 -1
+
+        indexOf
+    .keys
+    .values
+    .entries
+
+    set
+        类似数组,成员都是唯一的,不可重复
+            let arr = [1,1,2,3,4,3]
+            let s = new Set(arr)
+            arr = [...s]
+        set.add  添加set成员
+        set.delete  删除set成员
+        set.clear
+        set.has     判断set成员中,是否有某个值
+        forEach
+        size  属性  判断set成员的个数
+
+    map
+        类似于对象,
+        键值对构成,键可以为很多种数据类型
+        值->值
+
+        map.set(键名,值)
+        map.delete('键名')
+        map.clear()
+        map.has('键名')
+        keys
+        values
+        entries
+        size
+
+    iterator
+        迭代器
+            数组
+            类数组对象
+            字符串
+            ....
+
+    class   
+        静态方法
+                    只有类本身可以调用
+        静态属性
+
+        实例方法
+                    只有实例可以调用
+        实例属性
+
+        class Animal{
+            构造函数
+            constructor(name){
+                实例属性
+                this.name = name
+            }
+            实例方法
+            say(){
+
+            }
+            静态方法
+            static my(){
+
+            }
+        }
+      静态属性  
+        Animal.test = ''
+
+
+封装组件  代价高
+
+mvc
+    js jq
+    dom驱动
+mvvm
+    vue
+    数据驱动
+    element ui
+
+
+原型继承
+伪类继承
+
+Promise
+    构造函数,解决异步,优化异步
+
+    发起一个承诺
+    承诺成功     resolve
+    承诺失败     reject
+   let promise = new Promise((resolve,reject)=>{
+
+   })
+   发送请求
+      pendding --> resolve  请求成功
+      pendding -->reject    请求失败

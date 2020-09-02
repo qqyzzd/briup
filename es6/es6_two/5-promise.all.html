@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Promise的实例
+         let p1 = new Promise((resolve,reject)=>{
+         $.ajax({
+            url:'http://39.105.67.242:5588/orde/findAll',
+            method:'get',
+            success:function(res){
+                
+                resolve(res)
+            },
+            error:function(e){
+                reject(e)
+            }
+        })
+     })
+    //  
+     let p2 = new Promise((resolve,reject)=>{
+         $.ajax({
+            url:'http://39.105.67.242:5588/customer/findAll',
+            method:'get',
+            success:function(res){
+                // console.log(res.data[0].id)
+                // id = res.data[0].id
+                resolve(res)
+            },
+            error:function(e){
+                reject(e)
+            }
+        })
+     })
+     
+    //  将p1 p2组合成一个新的实例
+    // .all接受的一定是一个数组
+    // p新的承诺对象
+    // p的状态是等待两个p1 p2状态全部改变后,p的状态才改变
+    let p = Promise.all([p1,p2])
+    //  p的状态取决于p1 p2
+    // p1 p2状态都是成功,那么p的状态就是成功
+    // p1 p2状态有一个是失败,那么p的状态就是失败
+    p.then((res)=>{
+        console.log(res)
+    }).catch((e)=>{
+        console.log(e)
+    })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

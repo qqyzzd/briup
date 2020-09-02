@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prommise</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // var id
+        // $.ajax({
+        //     url:'http://39.105.67.242:5588/order/findAll',
+        //     method:'get',
+        //     success:function(res){
+        //         // console.log(res.data[0].id)
+        //         id = res.data[0].id
+        //         $.ajax({
+        //     url:'http://39.105.67.242:5588/order/findById?id='+id,
+        //     method:'get',
+        //     success:function(r){
+        //             console.log(r)
+        //     },
+        //     error:function(e){
+        //         console.log(e)
+        //     }
+        // })
+        //     }
+        // })
+
+// p承诺对象
+     let p = new Promise((resolve,reject)=>{
+         $.ajax({
+            url:'http://39.105.67.242:5588/orde/findAll',
+            method:'get',
+            success:function(res){
+                // console.log(res.data[0].id)
+                // id = res.data[0].id
+                resolve(res)
+            },
+            error:function(e){
+                reject(e)
+            }
+        })
+     })
+    //  成功执行.then   中的回调就是resolve
+    // 不管是是成功还是失败 .finally
+    p.then((r)=>{
+        console.log(r.data[0].id)
+     }).catch((e)=>{
+         console.log(e)
+     }).finally(()=>{
+         console.log('结束了')
+     })
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

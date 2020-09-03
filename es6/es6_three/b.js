@@ -1,0 +1,5 @@
+let r = require('./a.js')
+// console.log(r)
+// console.log(r.a)
+// console.log(r.test(9))
+console.log(module.children)

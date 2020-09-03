@@ -1,0 +1,186 @@
+class
+    类对象
+    constructor 
+    class Animal{
+        constructor(name){
+            实例属性
+            this.name = name
+        },
+        实例方法,只有实例可以调用
+        say(){
+
+        }
+        静态方法,只有构造函数本身可以调用
+        static sayMy(){
+
+        }
+    }
+    静态属性,只有一种有效方式去设置
+    Animal.test = 'hello'
+
+继承
+    子类
+    Animal是父类
+    calss Dog expends Animal{
+        constructor(name,age){
+            此刻的super是函数
+            super(name)
+            this.age = age
+        }
+        sayDog(){
+            此刻super的是对象
+            super.say()
+        }
+    }
+
+Promise
+    构造函数,封装/优化异步
+    $.ajax({
+        url:'xxxx',
+        success:function(res){
+             $.ajax({
+                url:'xxxx',
+                success:function(res){
+                         $.ajax({
+                        url:'xxxx',
+                        success:function(res){
+                            
+                        }
+                 })
+            }
+    })
+        }
+    })
+
+回调地狱
+p1是Promise的实例
+pending   --->  resolve   成功
+pending   --->  reject    失败
+let p1 = new Promise((resolve,reject)=>{
+   // $.ajax({
+
+   // })
+    //此刻的.then,代表异步请求执行成功
+       axios.get('url').then((res)=>{
+           resolve(res)
+   }).catch((e)=>{
+       reject(e)
+   })
+
+})
+.then代表从承诺对象是成功状态
+p1.then((r)=>{
+
+}).catch((e)=>{
+
+}).finally(()=>{
+    不管p1是什么状态,都会执行finally
+})
+
+p = Promise.all([p1,p2])
+    把多个实例对象,组成一个新的实例对象
+    如果p1 p2都是出成功状态,p 是成功状态
+    如果p1 p2有任何一个状态是失败,p 失败
+
+p = Promise.race([p1,p2])
+    p的状态取决于p1 p2谁先改变状态
+
+
+将异步操作同步化
+    generator
+        迭代器对象
+        迭代器对象.next
+        function* test(){
+            yield '';
+            yield '';
+            yield '';
+            return  ''
+        }
+        res迭代器对象
+        let res = test()
+        res.next() //value done :false
+
+    async 
+     await
+        async function test(){
+            let res = await axios.get('')
+            console.log(res)
+        }
+
+模块的导入导出
+    CommonJS
+        导出
+            module.exports.a = a
+
+        导入
+            require('模块的路径')
+
+module.id        当前模块的标识 
+module.filename  当前模块的文件名
+module.loaded    当前模块是否加载完成
+
+
+
+axios  纯粹的ajax,用来做前后台的数据交互
+
+mvc
+ajax <--> jq jq是js的库,封装大量dom
+
+mvvm
+模块化
+vue   数据
+    axios
+        自带promise
+        .then .catch
+
+    
+    
+
+npm
+    包管理器
+    npm init 创建配置文件 package.json
+    npm init -y 默认配置
+
+    安装依赖
+        npm install + '依赖的名字'
+
+path
+    主要用于文件的路径
+    使用
+        要安装path模块
+            npm install path
+        引入
+            let path = require('path') 
+
+    path.basename('./a.js')  当前文件的文件名
+    path.dirname     目录民
+    path.extname() 当前文件的扩展名
+
+querystring模块
+    querystring.stringify 把对象,转换成查询字符串
+    querystring.parse   把查询字符串,转换成对象
+
+    -g      global   全局安装,一处安装,处处使用
+                     局部安装,只在当前路径内生效
+
+    npm install path
+    更新
+    npm update path
+
+    卸载模块
+    npm uninstall path
+
+babel
+    浏览器只能识别一部分es6的语法
+    babel是用来把es6转换成浏览器可识别的es5
+
+    --save-dev      只在项目开发过程中需要使用,项目上线之后就不再需要了
+    --save         在项目开发过程中,和项目上线之后,还需要用到的依赖,使用此方式安装
+
+使用babel来转换es6的语法
+babel + '文件名'
+把转换后的es5的代码,导入到某个文件中
+babel .\src\a.js --out-file .\dist\b.js
+
+把某个文件夹下的所有js文件,全部转换后导入到一个新的文件夹下
+babel srcc --out-dir lib

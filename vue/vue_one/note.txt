@@ -1,0 +1,214 @@
+html
+    元素
+        行内元素
+共享一行,不可以设置宽高
+img 特殊的行内
+浮动  可以设置宽高
+
+        块元素
+            独占一行,可以设置宽高
+
+        功能性元素
+            input type
+                    data
+                    number
+
+            a
+                href
+                    url
+                    id   锚点链接
+                    mailto:邮箱地址
+                target
+
+    H5新增的块级元素
+        语义化标签
+        header
+        article
+        section
+        nav
+        ...
+     在样式表丢失的情况下 
+     浏览器解析效率比较高
+     兼容性 IE8 会把这些标签解析为行内元素
+    
+     <image />标签上title属性与alt属性的区别是什么
+        alt当图片加载不了,出现的解释文字
+        title 
+
+
+css
+    CSS引入方式
+    行内样式   一般不推荐
+
+    内嵌式
+      =
+    外部样式
+        link
+            属于html标签
+            加载html的同时,去加载css
+        @import
+            属于css
+            先加载html,完成之后再去加载css
+
+    外边距合并问题
+        针对垂直
+            父子级
+                1.给父级元素加边框
+                2.给父级元素加overflow
+                3.给父级或子级加上浮动
+                4.给父级或子级加上绝对定位属性
+                5.给父级或子级加上display:inline-block
+            兄弟级
+                如果都是正数,会合并,取值较大的一个
+                如果都是负数,会合并,取绝对值较大的那一个值
+                如果一正一负,不会合并
+
+        显示与隐藏
+            display
+                none
+                block
+                隐藏之后不占据屏幕空间的
+
+            visibility
+                hidden
+                visible
+            opcity
+                0
+                1
+
+        元素的水平垂直居中
+         行内
+            text-align:center
+            line-height:
+
+         块级
+            水平居中  margin:0 auto;
+            1. 给父级元素设置相对定位为
+               给子级元素设置绝对定位
+               left  0
+               right    0
+               top  0
+               bottom   0
+               margin:auto;
+
+            2.给父级元素设置
+                display:flex;
+                justify-content:center;
+                align-items:center;
+
+    盒子模型
+        内容区 padding border margin
+        box-sizing
+            border-box
+            IE盒子
+                盒子的宽度:width
+                盒子在浏览器中的宽度:width + margin-left + margin-right
+
+            content-box 
+                w3c盒子
+                    内容区的宽度:width
+                    盒子的宽度:width + padding-left + padding-right + border-left + border-right
+                    盒子在浏览器中的宽度:width + padding-left + padding-right + border-left + border-right + margin-left + margin-right
+
+    清除浮动
+        父子级
+            给父级元素添加overflow:hidden
+            
+            ::after{
+                content:'';
+                display:block;
+                clear:'both'
+            }
+        兄弟级
+            clear:both
+
+    css选择器
+        id
+        class
+        标签选择器
+        通配符选择器/普遍选择器 *
+        +
+        ~
+        >
+        伪类选择器
+        伪元素选择
+        属性选择器 10
+
+布局
+    左右两列200px,中间列自适应
+    calc()
+
+定位
+    相对定位 没有脱离文档流 相对于自身原本的位置
+    绝对定位,脱离文档流,如果父元素没有定位属性,那么相对于浏览器定位,相反的根据父元素
+    固定定位,脱离文档流,相对于浏览器进行定位
+
+    定位是完全脱离文档流
+    浮动不完全脱离文档流,不会遮挡文本
+
+动画的属性
+
+js
+    基本数据类型
+
+    运算符
+
+    循环语句
+        for
+
+    条件判断语句
+        if
+
+    引用数据类型
+        函数,对象,数组
+
+    数组API
+        push
+        pop
+        shift
+        unshift
+        sort
+        reverse
+        slice
+        splice
+        concat
+        indexOf
+        forEach
+        ....
+
+dom
+
+bom
+
+
+
+Vue     中国
+    基于mvvm模式的框架
+    脱离了dom操作
+
+    mvvm
+        modal   数据层 
+        view    视图
+        vm  viewModal  做dom监听
+
+    mvc
+        modal 数据层
+        view  视图层
+        controller 控制器  
+    尤雨溪
+    轻量级,上手简单
+
+angluJS 谷歌
+
+1.vue的引入方式
+    1.cdn
+    2.npm
+        npm install vue
+            这种引入需要依赖node环境
+    3.vue-cli脚手架
+        企业级,模块化
+
+    if(false){
+        
+    }
+

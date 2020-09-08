@@ -1,0 +1,86 @@
+1、生命周期
+    1、VUE实例初始化阶段
+        生命周期的第一步首先是创建vue实例，并进行初始化
+        beforeCreate(页面的整个生命周期中只执行一次)
+            初始化data中的属性以及methods中的方法
+            但是此时data和methods中的数据无法访问
+        created
+            初始化结束，实例创建完毕，可以访问到数据和方法
+    2、挂载阶段   
+        beforeMount
+            数据挂载之前，判断当前的实例应用于哪个模版，但此时的数据还不能给模版使用
+        Mounted
+            挂载完成，可以把数据应用在模板中
+    3、更新阶段    
+        beforeUpdate(执行多次)
+            虚拟DOM更新之前
+        Update(执行多次)    
+            虚拟DOM更新完成
+    4、销毁阶段
+        beforeDestroy
+            销毁之前，这个时候还是可以使用实例对象的
+        Destroy
+            销毁之后
+2、指令
+    v-text
+        把数据以文本的形式渲染到页面中
+    v-html
+        会对标签进行解析，解析之后应用到页面中
+    v-once
+        只在第一次的时候有效
+    v-bind:
+        绑定属性
+        简写 :+属性名
+        :style
+        :title 
+    js表达式
+        {{num+10}}
+        {{num?'yes':'no'}}
+    不可以使用if else
+
+    v-on
+        绑定事件
+        @click
+        foucs
+    
+    v-if    条件渲染
+        v-if可以为表达式
+    v-else  
+    v-else-if
+        如果不满足条件，那么该节点在页面中不进行渲染，dom树中没有当前的节点
+
+    v-show  
+        如果不满足条件，那么该节点在页面中不进行渲染，dom树中有当前的节点
+    v-for
+        循环渲染 
+        遍历数组
+            item是数组项，
+            index是索引，
+            key:代表唯一，
+            <div v-for='(item,index) in arr' :key='index + 1'></div> 
+        遍历对象
+            value是当前对象的属性值，
+            item是当前对象的属性名，
+            index是当前对象的索引
+            <div v-for='(item,value,index) in obj'>{{index}}:{{item}}:{{value}}</div>
+    不推荐同时使用v-for和v-if
+    v-for的优先级比v-if高
+
+class 
+    :class="{one:isTrue}"
+    :class = 'obj'
+
+    data:{
+        obj:{
+            color:blue
+        }
+    }
+    :class='[属性名]' //每一个属性名代表一个类名
+
+style
+    表示行内样式
+    :style = "{color:属性名，fontSize:属性值}"   不识别“-”，要用驼峰命名
+    :style = 'obj'
+    :style = '[21,3]'
+双向数据绑定
+    

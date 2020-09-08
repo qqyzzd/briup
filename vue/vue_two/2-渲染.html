@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渲染</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <style>
+        .main>div{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <!-- 条件渲染 -->
+        <!-- <div v-if='isShow==ope'>v-if</div> -->
+        <!-- <div v-else>v-else</div> -->
+        <!-- <div v-show='isShow==ope'>v-show</div> -->
+    <!-- 循环渲染 -->
+    <!-- <ul>
+        <li v-for='item in arr' :key='item.id'>{{item.name}}/{{item.age}}</li>
+    </ul> -->
+    <ul>
+        <!--    item是属性值，
+                name名是属性,
+                index是索引 -->
+        <li v-for='(item,name,index) in obj'>{{index}}:{{name}}:{{item}}</li>
+    </ul>
+    </div> 
+
+    <script>
+        let vm = new Vue({
+            el:'.main',
+            data:{
+                obj:{
+                    name:'lisi',
+                    tel:'10086',
+                    age:19
+                },
+                isShow:open,
+               arr:[{
+                   id:1,
+                   name:'tom',
+                   age:11
+               },
+               {
+                   id:2,
+                   name:'jerry',
+                   age:13
+               },
+               {
+                   id:3,
+                   name:'jack',
+                   age:17
+               }],
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

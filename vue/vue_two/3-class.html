@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <style>
+        .one{
+            width: 200px ;
+            height: 200px;
+            background-color: blue;
+        }
+        .text{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- <div :class={one:isTrue,text:isTrue}>一二三四五</div> -->
+        <!-- <div :class="obj">一二三四五</div> -->
+        <div :class="[one,text]">一二三四五</div>
+    </div> 
+    <script>
+        let vm = new Vue({
+            el:'.app',
+            data:{
+                one:'one',
+                text:'text',
+                obj:{
+                    one:true,
+                    text:true,
+                },
+                isTrue:true,
+                hasText:true
+            }
+
+        })
+    </script>  
+</body>
+</html>

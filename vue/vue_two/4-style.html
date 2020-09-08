@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <style>
+        .one{
+            width: 200px ;
+            height: 200px;
+            background-color: blue;
+        }
+        .text{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- <div :style='{color:textColor,background:bgColor}'>上山打老虎</div> -->
+        <div :style='obj'>上山打老虎</div>
+    </div> 
+    <script>
+        let vm = new Vue({
+            el:'.app',
+            data:{
+                obj:{
+                    color:'red',
+                    background:'blue'
+                },
+                textColor:'green',
+                bgColor:'pink'                
+            }
+        })
+    </script>  
+</body>
+</html>

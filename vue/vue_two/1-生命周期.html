@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <style>
+        #one{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- {{msg}} -->
+        <!-- 双向数据绑定 -->
+        <!-- {{name}} -->
+        <!-- <div v-text='text'></div> -->
+        <!-- <div v-html='text'></div> -->
+        <!-- <div v-bind:id ='id'>滴滴滴</div> -->
+        <!-- <button v-bind:disabled='bo'>按钮</button> -->
+        <!-- <div>{{num>9?"11":"22"}}</div> -->
+        <!-- <div v-bind:id='"my"+id'>{{msg.split('').reverse().join('')}}</div> -->
+        <!-- <div v-on:click='say()'>点击 </div> -->
+        <div @click='say()'>点击 </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'.main',//指定模版
+            // 生命周期尽量不用箭头函数
+            // 影响this的指向
+            beforeCreate(){
+                console.log('beforeCreate')
+            },
+            created(){
+                console.log('created')
+            },
+            beforeMount(){
+                console.log('beforeMount')
+            },
+            Mounted(){
+                console.log('Mounted')
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate')
+            },
+            Updated(){
+                console.log('Updated')
+            },
+            data:{
+                name:'tom',
+                num:'10',
+                text:'这是一段测试文字',
+                // text:'<h1>这是一段测试文字</h1>',
+                id:'one',
+                bo:true,
+                msg:'hello'
+            },
+            methods:{
+                say(){
+                    console.log('say')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

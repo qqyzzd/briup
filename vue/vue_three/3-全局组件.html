@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+    <div id="app"'>
+        <briup-cyl :cyl='jjj' data='hello'></briup-cyl>
+    </div>
+    <script>
+        //注册全局组件
+        //briup-cyl是组件名
+        Vue.component('briup-cyl',{
+            //template组件的内容
+            template:`
+            <div @click='test' :style='style'>
+                {{cyl}}
+                {{data}}
+            </div>
+            `,
+            //子组件使用props承接父组件的传值
+            props:['cyl','data'],
+            //在组件中，data必须是函数
+            //返回值为对象
+            data(){
+                return{
+                    msg:'hello',
+                    style:{
+                        width:'200px',
+                        height:'100px',
+                        backgroundColor:'pink',
+                        color:'yellow'
+                    }
+                } 
+            },
+            methods: {
+                test(){
+                    alert('test')
+                }
+            },
+        })
+        new Vue({
+            el:'#app',
+            //对象
+            data:{
+                jjj:'父组件传值'
+            }
+        })
+    </script>
+</body>
+</html>

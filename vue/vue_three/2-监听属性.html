@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监听</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{form}}
+        <input type="text" v-model='form.username'>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                form:{
+
+                }
+            },
+            //监听属性
+            watch:{
+                form:{
+                    handler:function(newName,oldName){
+                        console.log(newName)
+                        console.log(oldName)
+                        this.search(newName)
+                    },
+                    //表示深度监听，对象中的属性发生改变
+                    deep:true
+                }
+            },
+            methods: {
+                //筛选数据
+                search(item){
+                    console.log(item)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

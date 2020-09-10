@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>原值:{{msg}}</div>
+        <div>反转:{{msg.split('').reverse().join('')}}</div>
+        <div>计算属性反转:{{reverseMsg}}</div>
+        <div>计算属性反转:{{reverseMsg}}</div>
+        <div>计算属性反转:{{reverseMsg}}</div>
+        <div>计算属性反转:{{reverseMsg}}</div>
+        <div>方法反转:{{revMsg()}}</div>
+        <div>方法反转:{{revMsg()}}</div>
+        <div>方法反转:{{revMsg()}}</div>
+        <div>方法反转:{{revMsg()}}</div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'hello',
+            },
+            created() {
+            //     var that = this
+            //     setInterval(function(){
+            //         that.msg = that.msg + 1
+            //     },1000)
+            
+            //     setInterval(()=>{
+            //         this.msg = this.msg + 1
+            //     },1000)
+            },
+            // 计算属性，如果计算属性的依赖发生了改变，那么计算属性就会重新执行
+            computed:{
+                reverseMsg:function(){
+                    console.log('执行了计算属性');
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            // 方法比计算属性后执行
+            methods: {
+                revMsg:function(){
+                    console.log('执行了方法');
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{visible}}
+        <button @click='toggle'>显示</button>
+        <briup-info @close='test()' :visible='visible' :data='msg'></briup-info>
+    </div>
+    <script>
+        Vue.component('briup-info',{
+            template:`
+                <div v-if='visible' :style='outerstyle'>
+                    {{data}}
+                    <div @click='close' :style='closeStyle'>X</div>
+                </div>
+            `,
+            props:['data','visible'],
+            methods:{
+                close(){
+                    // this.visible=false
+                    this.$emit('close')
+                }
+            },
+            data(){
+                    return{
+                        closeStyle:{
+                          position:'absolute',
+                          right:'10px',  
+                          color:'pink',
+                          top:'0px'
+                        },
+                        outerstyle:{
+                            position:'relative',
+                            height:'50px',
+                            backgroundColor:'teal',
+                            borderRadius:'5px',
+                            color:'#fff',
+                            textAlign:'center',
+                            linHeight:'50px'
+                        }
+                    }
+                }
+        })
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'这是一个提示',
+                visible:false,
+            },
+            methods:{
+                toggle(){
+                    this.visible = true
+                },
+                test(){
+                    console.log('111')
+                    this.visible=false
+                }
+            }
+        })
+    </script>    
+</body>
+</html>

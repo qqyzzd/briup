@@ -1,0 +1,148 @@
+1.生命周期
+   beforeCreate 
+        初始化之前,不可以使用实例对象中数据和方法
+   created
+        初始化完成,可以使用方法和数据
+   beforeMount
+        挂载前,判断当前是否有模板
+   mounted
+        挂载后,容器就可以使用数据和方法
+
+   beforeUpdate
+        更新前  可以多次执行
+   updated
+        更新后  可以多次执行
+
+   beforeDestroy
+        销毁前
+   Destroy
+        销毁后
+
+指令
+    v-bind
+        绑定属性
+        v-bind:class=''
+              :class=''
+        :title
+        :url='"http://"+url'
+
+    v-html
+        数据渲染
+        可以识别标签
+    v-text
+        数据渲染
+        不可以识别标签,会把标签当作普通文本进行显示
+
+    v-if
+        条件判断,是否显示某个节点
+        如果v-if的值是false,当前的节点不会加载到dom中
+        v-if='',可以简单的逻辑运算
+
+    v-else  只有当v-if不满足条件,才会执行v-else
+
+        if(){
+
+        }else{
+
+        }
+
+    v-else-if='条件判断'
+
+    v-show
+        条件判断,是否显示某个节点
+        如果v-if的值是false,节点不会显示在页面中,会加载到dom树中
+        dispaly:none;
+
+    v-for
+        循环遍历
+        v-for的取值:
+            数组:v-for='(item,index) in arr'
+                        item值  index索引
+
+            对象:v-for='(value,name,index) in obj'
+
+    v-on
+        绑定事件
+        v-on:事件类型
+        简写: @click
+
+        修饰符
+            @click.stop
+            @click.once
+
+:class
+    类
+:class='[,,,]'
+
+:style
+    行内样式
+    :style='obj'
+
+    data:{
+        obj:{
+            color:'red';
+            fontSize 必须使用驼峰命名
+        }
+    }
+
+表单
+    双向数据绑定
+
+userform是对象
+<form v-model='userform'>
+    <input type='text' v-model='userform.username' />
+    <input type='radio' v-model='userform.gender' />
+    <input type='radio' v-model='userform.gender' />
+
+    hobby必须为数组
+    <input type='checkbox' v-model='userform.hobby' />
+    <input type='checkbox' v-model='userform.hobby' />
+    <input type='checkbox' v-model='userform.hobby' />
+</form>
+
+
+计算属性
+
+    computed
+        一般指的是对data中原有的数据进行计算后返回结果,可以当作属性来使用
+        只有当计算属性依赖发生改变,那么计算属性才会重新执行
+
+监听属性
+        input  change事件
+            data:{
+                msg:'',
+                form:{}
+            }
+        监听,如果msg的值发生改变,那么触发监听
+        watch:{
+            msg:function(new,old){
+
+            },
+            form:{
+                handler:function(new,old){
+
+                },
+                深度监听
+                deep:true
+            }
+     }
+
+
+组件
+    先了解
+
+    架构师
+
+    组件库 
+
+
+    按钮  复用
+
+父组件会给子组件传递数据 prop
+子组件会通过事件向父组件传递消息 this.$emit
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+</head>
+<body>
+    <div class="app">
+        <div>总数:{{total}}</div>
+        <briup @add='add' @reduce='reduce'></briup>
+        <briup @add='add' @reduce='reduce'></briup>
+        <briup @add='add' @reduce='reduce'></briup>
+        <briup @add='add' @reduce='reduce'></briup>
+    </div>
+    <script>
+        Vue.component('briup',{
+            template:`
+                <div>
+                    <div>count数:{{count}}</div>
+                    <div>
+                        <button @click='aa'>增加</button>
+                        <button @click='rr'>减少</button>
+                    </div>
+                </div>
+            `,
+            data(){
+                return{
+                    count:0 
+                }
+            },
+            methods: {
+                aa(){
+                    this.count++
+                    this.$emit('add')
+                    // vm.total++
+                },
+                rr(){
+                    this.count--
+                    this.$emit('reduce')
+                    // vm.total--
+                }
+            },
+        })
+        let vm =new Vue({
+            el:'.app',
+            data:{
+                total:0
+            },
+            methods:{
+                add(){
+                    this.total++
+                },
+                reduce(){
+                    this.total--
+                }
+            }
+        })
+    </script>    
+</body>
+</html>

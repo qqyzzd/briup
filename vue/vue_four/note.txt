@@ -1,0 +1,228 @@
+1.计算属性
+    只有当数据改变的时候,才会重新执行
+    把计算之后的数据,当作属性来用
+
+    方法:
+        使用方式:方法名()
+        每次调用,都会执行
+
+    使用:  {{test}}
+    data:{
+        arr:[1,2,3,4]
+    }
+    computed:{
+        test:function(){
+            return this.arr.reverse()
+        }
+    }
+
+2.监听
+    watch
+        监听数据的变化,从而触发某个方法
+
+        <input type='text' v-model='msg' />
+
+
+        data:{
+            msg:'',
+            form:{
+                username:''
+            }
+        }
+        watch:{
+            msg:function(newMsg,oldMsg){
+                this.test()
+            },
+            深度监听,form对象中有任意一个属性发生改变,那么就触发监听
+            form:{
+                handler:function(new,old){
+
+                },
+                deep:true
+            },
+            监听form对象中的username属性
+            "form.username":fucntion(){
+
+            }
+
+        }
+        methods:{
+            test(){
+                console.log(this.msg)
+            }
+        }
+
+3.组件
+    实现功能,不追求
+    
+    重复的部分提取出来,进行封装
+
+    用户管理
+        新增  修改
+
+        模态框 封装成组件
+
+    全局注册
+        Vue.component('组件名',{
+            template:``,  容器
+            组件的data必须要昂是函数
+            data(){
+                return {
+
+                }
+            },
+            methods:{
+
+            }
+        })
+
+    局部注册
+        let user = {
+            template:``
+        }
+
+        let userinfo = {
+            template:`
+                <div>
+                    引入user组件
+                    <user></user>
+                </div>
+            `,
+            components:{
+                'user':user
+            }
+        }
+
+        new Vue({
+            components:{
+                'userinfo':userinfo
+            }
+        })
+
+    template
+        里面的内容不会显示在页面中的
+        只能有一个直接孩子
+
+
+    父子组件传值
+        父级能够向子级传数据,反之不可以
+        子级可以向父级映射消息状态
+
+        <div data='你好' @test='test' :title='true'>
+        
+        </div>
+
+        子组件
+          Vue.component('组件名',{
+            template:`
+                <div @click='test'></div>
+            `,  容器
+            组件的data必须要昂是函数
+            data(){
+                return {
+
+                }
+            },
+            props:{
+                data:String,
+                title:String
+            }
+            methods:{
+                test(){
+                    this.$emit('test')
+                }
+            }
+        })
+
+        new Vue({
+            methods:{
+                test(){
+
+                }
+            }
+        })
+
+普通插槽
+    允许在调用子组件的
+    时候给子组件传递模板
+    <briup>
+        <template>
+            hello    必须使用template
+        </template>
+    </briup>
+    Vue.component('briup',{
+            template:`
+                <div>
+                    插槽
+                    <slot></slot>    
+                </div>
+            `,
+
+        })
+
+具名插槽
+    给每一个插槽命名(name)
+    在父组件调用传递模板的时候,要给每个模板指定插槽
+
+    Vue.component('briup',{
+            template:`
+                <div>
+                    <div>
+                        <slot name='one'></slot>     
+                    </div>   
+                    <div>
+                        <slot name='two'></slot>     
+                    </div>  
+                </div>
+            `,
+
+        })
+
+作用域插槽
+    如果想要在父组件给子组件传递模板的时候使用子组件data中的数据
+    <briup>
+        
+        <template v-slot:default='user'></template>
+    </briup>
+
+    Vue.component('briup',{
+            template:`
+                <div>
+                    <div>
+                        <slot v-bind:user='user'></slot>     
+                    </div>   
+                    
+                </div>
+            `,
+            data(){
+                return{
+                    user:{
+                        username:'tom',
+                        age:12
+                    }
+                }
+            }
+
+        })
+
+axios
+ajax
+
+混入
+混入对象
+let minxin = {
+    data(){
+        return {
+            msg:''
+        }
+    }
+}
+将混入对象导入组件
+new Vue({
+    el:'',
+    mixins:[minxin]
+})
+注意:
+    如果混入对象的属性名和组件中的属性名有重复,那么会合并,并且组件的值生效
+    如果混入对象的方法和组件的方法有重名现象,那么组件的方法生效
+    

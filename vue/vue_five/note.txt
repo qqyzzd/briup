@@ -1,0 +1,322 @@
+插槽
+普通插槽
+    <div id='app'>
+        <user>
+            <template>
+                hello
+            </template>
+        </user>
+    </div>
+
+    let user = {
+        template: `
+            <div>
+                <slot></slot>
+            </div>
+        `
+    }
+
+具名插槽
+<div id='app'>
+        <user>
+            <template v-slot:header>
+                hello
+            </template>
+            <template v-slot:header>
+                world
+            </template>
+        </user>
+    </div>
+
+    let user = {
+        template: `
+            <div>
+                <slot name='header'></slot>
+                <slot name='footer'></slot>
+            </div>
+        `
+    }
+
+作用域插槽
+    父组件想要获取子组件的数据
+
+    <div id='app'>
+        <user>
+            <template v-slot:default='msg'>
+                {{msg}}
+            </template>
+        </user>
+    </div>
+
+
+    let user = {
+        template: `
+            <div>
+                <slot v-bind:msg='msg'></slot>
+            </div>
+        `,
+        data(){
+            return {
+                msg:'hello world'
+            }
+        }
+    }
+
+混入
+    mixin
+
+混入对象
+let mixin = {
+    template:  ``,
+    data(){
+        return{
+
+        }
+    },
+    methods:{
+
+    }
+}
+
+new Vue({
+    mixins:[mixin]
+})
+
+注意:
+    如果混入对象中的属性名或者是方法名和组件内的属性名和方法名有重复
+    合并,并且组件优先
+
+自定义指令
+    v-if
+    v-for
+
+
+    全局注册
+        Vue.directive('',fucntion(el){
+
+        })
+    局部注册
+        directive:{
+            focuc:{
+
+            }
+        }
+
+
+过滤器
+    全局注册
+        Vue.filter()
+        日期处理函数,很多页面都会用到
+        所以最好使用全局注册
+
+    局部注册
+        filter:{
+
+        }
+
+渲染函数
+    render
+
+看点资讯
+    vue全家桶
+    vue + vue-router + vuex
+
+vue-router的引用方式
+1.cdn 引入连接
+
+2.npm
+    npm install vue-router -save
+    导入使用
+    import vueRouter from 'vue-router'
+    Vue.use(vueRouter)
+
+
+路由的使用
+    1.创建组件
+        let user = {
+            template: `
+                <div>hello</div>
+            `
+        }
+    2.创建路由对象
+        let router = new VueRouter({
+            routes:[{
+                path:'/user',  //当前组件的路径
+                component:user
+            }]
+        })
+    3.注册路由对象
+        new Vue({
+            el:'',
+            router,
+        })
+    
+    4.在模板中使用
+        to表示要跳转的路径
+        <router-link to='/user'>用户管理</router-link>
+
+        加载组件内容
+        <router-view></router-view>
+
+动态组件
+    两个路由地址使用同一个组件
+    组件只会创建一次,切换路由不会重新创建,会复用
+    当前动态传的id,存储在this.$route.params中
+    let router = new VueRouter({
+            routes:[{
+                path:'/user/:id',  //当前组件的路径
+                component:user
+            }]
+        })
+
+    监听路由切换的方式
+        
+        1.watch
+            let user = {
+            template: `
+                <div>hello</div>
+            `,
+            watch:{
+                $route(to,from){
+                    to:目标路由地址
+                    from:当前路由地址
+                }
+            }
+        }
+
+        2.导航守卫
+            beforeRouteUpdate(to,from,next){
+                next()
+            }
+
+编程式导航
+<div @click ='toUser'>用户管理</div>
+
+let router = new VueRouter({
+            routes:[{
+                path:'/user/:id',  //当前组件的路径
+                component:user
+            }]
+        })
+
+new Vue({
+    methods:{
+        toUser(){
+            this.$router.push({
+                path:'/user',
+                query:{  //携带参数
+                    name:'tom',
+                    age:12
+                }
+            })
+        }
+    }
+})
+
+new Vue({
+    methods:{
+        toUser(){
+            this.$router.push({
+                name:'user',
+                params:{  //携带参数
+                    name:'tom',
+                    age:12
+                }
+            })
+        }
+    }
+})
+
+$router.replace()
+
+$router.go(-1) 回退上一级
+$router.go( 1) 前进上一级
+
+
+导航守卫
+    全局前置导航守卫
+    每个路由进行切换前都会触发
+     router.beforeEach((to, from, next) => {
+            console.log('触发了全局前置导航守卫')
+            next()
+     })
+
+    后置钩子
+    每个路由进行切换后都会触发,没有next
+     router.afterEach((to, from) => {
+                console.log('触发后置钩子')
+            })
+
+    独享守卫
+    router = new VueRouter({
+            routes:[{
+                path:'/user',
+                component:user,
+                beforeEnter: (to, from, next) => {
+                    console.log('独享守卫')
+                    next()
+                }
+            },
+
+
+
+    const Foo = {
+        template: `...`,
+        beforeRouteEnter (to, from, next) {
+            // 在渲染该组件的对应路由被 confirm 前调用
+            // 不！能！获取组件实例 `this`
+            // 因为当守卫执行前，组件实例还没被创建
+        },
+        beforeRouteUpdate (to, from, next) {
+            // 在当前路由改变，但是该组件被复用时调用
+            // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+            // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+            // 可以访问组件实例 `this`
+        },
+        beforeRouteLeave (to, from, next) {
+            // 导航离开该组件的对应路由时调用
+            // 可以访问组件实例 `this`
+        }
+        }
+
+路由模式
+    mode:
+         history /
+         hash   #/  默认
+
+脚手架
+    安装脚手架
+        npm install -g @vue/cli
+    查看版本
+        vue --version
+    创建项目
+        vue create 项目名
+
+    运行项目
+        npm run serve
+
+
+
+用户管理
+             操作
+ 1           详情
+ 2           详情
+ 3           详情
+             详情
+
+
+
+
+
+es6
+导出
+ export 
+ export default
+导入
+ import xx from ''
+
+commentJs
+导出
+    export.module = 
+导入
+let path = require('path')  npm install path

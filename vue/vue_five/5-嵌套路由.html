@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/3.4.3/vue-router.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to='/user'>用户</router-link>
+        <router-link to='/order'>订单</router-link>
+        <br>
+        <br>
+        <router-view></router-view>
+    </div>
+    <script>
+        let user={
+            template:`
+                <div>
+                <router-link to='/user/staff'>员工</router-link> 
+                <router-link to='/user/customer'>顾客</router-link> 
+                <br>
+                <br>
+                <router-view></router-view>
+                </div>
+            `
+        }
+        let staff = {
+            template:'<div>员工模块</div>'
+        }
+        let customer = {
+            template:'<div>顾客模块</div>'
+        }
+        let order = {
+            template:`
+                <div>
+                    <router-link to='/order/waitOrder'>待完成订单</router-link> 
+                    <router-link  to='/order/doingOrder'>进行中订单</router-link> 
+                    <br>
+                <br>
+                <router-view></router-view>
+                </div>
+            `
+        }
+
+        let waitOrder = {
+            template:'<div>待完成订单模块</div>'
+        }
+        let doingOrder = {
+            template:'<div>进行中订单模块</div>'
+        }
+
+        // 路由对象
+        let router = new VueRouter({
+            routes:[{
+                path:'/user',
+                component:user,
+                children:[{
+                    path:'staff',
+                    component:staff
+                },{
+                    path:'customer',
+                    component:customer
+                }]
+            },{
+                path:'/order',
+                component:order,
+                children:[{
+                    path:'waitOrder',
+                    component:waitOrder
+                },{
+                    path:'doingOrder',
+                    component:doingOrder
+                }]
+            }]
+        })
+        new Vue({
+            el:'#app',
+            router  //注册路由对象
+        })
+    </script>
+</body>
+</html>

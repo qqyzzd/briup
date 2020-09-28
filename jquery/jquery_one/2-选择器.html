@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <style>
+        ul{
+            width: 1200px;
+            height: 300px;
+            border: chartreuse solid 2px;
+            display: flex;
+        }
+        li{
+            width: 150px;
+            height: 150px;
+            list-style: none;
+            border: pink solid 2px;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('li:has("p")').css('background','pink')
+        })
+    </script>
+</head>
+<body>
+    <ul>
+        <li class="one">mqr</li>
+        <li id="two">jjj</li>
+        <li></li>
+        <li>hello</li>
+        <li><p></p></li>
+        <li>hello</li>
+    </ul>
+</body>
+</html>

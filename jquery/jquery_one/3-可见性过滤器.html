@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可见性</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            border: black solid 1px;
+            margin: 10px;
+        }
+        .one{
+            display: none;
+            /* visibility: hidden; */
+        } 
+        .two{
+            /* display: none;  */
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        // window.onload=function(){
+
+        // }
+        $(function() {
+            $('div:hidden').css('display','block')
+            $('div:visible').css('background','yellow')
+        })
+    </script>
+</head>
+<body>
+    <div class="one">one</div>
+    <div class="two">two</div>
+</body>
+</html>

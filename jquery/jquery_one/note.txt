@@ -1,0 +1,102 @@
+1.jq
+
+3.4  htmlAPI
+5. 看点资讯
+es6
+
+程   
+
+
+1.jq js的库
+  dom操作
+
+  document
+
+  $('div')
+  绑定事件
+  属性.style = 'color:red'
+  .css()
+  .attr()
+
+ 1.$() 来调用jq函数
+ 	参数:
+ 		匿名函数
+ 			$(function(){
+
+ 			})
+
+ 		css选择器
+ 			代表选中某个节点
+ 			$('div')
+ 			$('.one')
+ 			$('#one div')
+ 			$('#one>div')
+		
+		html的片段
+			append
+			$('div').append($('<span>kkkkk</span>'))
+
+		element元素
+			var $a = $('span')
+			$('div').append($($a))
+
+2.jq方法  做 批量操作
+
+ 3.选择器
+ 	1.基本选择器
+ 	2.层次选择器
+ 	3.过滤器
+ 		:first
+ 		:last
+ 		:eq(index)  相等
+ 		:odd()
+ 		:even()
+ 		:lt(index)  索引小于index
+ 		:gt(index)	索引大于index
+ 		:header()   标题
+ 		:not(选择器)      选中除了拥有该选择器之外的所有节点
+
+ 	4.内容过滤器
+ 		:contains('text')  选中包含该文本的
+ 		:empty             选中没有子节点的元素
+ 		:parent				选中有子节点的元素
+ 		:has			 选中包含该节点的
+
+ 	5.可见性过滤器
+ 		:hidden			选中不占据屏幕空间
+ 		:visible		选中占据屏幕空间
+
+ 	6.属性过滤器
+
+ 	7. 表单过滤器
+
+ 4.插入节点
+ 	append
+ 	appendTo
+ 	bofore
+ 	insertBefore
+ 	prepend
+ 	prependTo
+ 	after
+ 	insetAfter
+
+ 5.删除节点
+ 	empty()  清空所有的子元素
+ 	remove() 删除某个节点,包括事件
+ 	detach() 删除某个节点,保留事件
+
+ 6. 克隆
+ 	clone()
+ 		默认,false   浅复制  不会复制事件
+ 			 true    深复制  会复制事件
+7.属性
+	attr
+		一个   获取当前属性的值
+		两个   设置该属性的属性值
+
+	prop
+		一般用于单属性,布尔属性
+
+	removeAttr
+	removeProp
+
